@@ -1,0 +1,11 @@
+[
+    {
+        "caption": "Exclude from Project",
+        "command": "exclude_from_project",
+        "args": {"paths": []}
+    },
+    {
+        "caption": "Edit Project",
+        "command": "edit_project_file"
+    }
+]
