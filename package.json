@@ -1,15 +1,15 @@
 {
   "name": "ExcludeFromProject",
+  "details": "https://github.com/colinta/SublimeExcludeFromProject",
   "description": "Some Side Bar.sublime-menu commands to help with .sublime-project management.",
   "author": "Colin T.A. Gray (colinta)",
-  "details": "https://github.com/colinta/SublimeExcludeFromProject",
   "labels": [
     "sublime-project"
   ],
   "releases": [
     {
-      "tags": true,
-      "sublime_text": ">=3000"
+      "sublime_text": ">=3000",
+      "tags": true
     }
   ]
 }
