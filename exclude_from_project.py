@@ -19,9 +19,8 @@ class ExcludeFromProjectCommand(sublime_plugin.WindowCommand):
     def run_each(self, path):
         # Get the current project file path
         project_data = self.window.project_data()
-        project_file = self.window.project_file_name()
 
-        if not project_data or not project_file:
+        if not project_data:
             sublime.error_message("No project file found. Please save your project first.")
             return False
 
@@ -40,20 +39,19 @@ class ExcludeFromProjectCommand(sublime_plugin.WindowCommand):
         # Initialize folder_exclude_patterns if it doesn't exist
         if 'folder_exclude_patterns' not in folder_settings:
             folder_settings['folder_exclude_patterns'] = []
+        if 'file_exclude_patterns' not in folder_settings:
+            folder_settings['file_exclude_patterns'] = []
 
-        # Get the project root directory
-        project_root = os.path.dirname(project_file)
-
-        if path not in folder_settings['folder_exclude_patterns']:
-            folder_settings['folder_exclude_patterns'].append(path)
+        if os.path.isdir(path):
+            if path not in folder_settings['folder_exclude_patterns']:
+                folder_settings['folder_exclude_patterns'].append(path)
+        else:
+            if path not in folder_settings['file_exclude_patterns']:
+                folder_settings['file_exclude_patterns'].append(path)
 
         # Save the updated project data
         self.window.set_project_data(project_data)
         return True
-
-    def is_visible(self, paths):
-        # Only show the command if we have a project file
-        return bool(self.window.project_file_name())
 
 
 class EditProjectFileCommand(sublime_plugin.WindowCommand):
