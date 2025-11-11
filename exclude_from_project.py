@@ -23,6 +23,9 @@ class ExcludeFromProjectCommand(sublime_plugin.WindowCommand):
         if not project_data:
             sublime.error_message("No project file found. Please save your project first.")
             return False
+        if not 'folders' in project_data:
+            project_data['folders'] = []
+            return
 
         # find the folder in project_data['folders'] that contains the path
         folder_settings = None
